@@ -6,4 +6,5 @@ class Project(models.Model):
 
     title = models.CharField()
     description = models.TextField()
-    image = models
+    image = models.CloudinaryField('photos')
+    project_url = models.URLField()
