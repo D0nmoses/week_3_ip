@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Project, Profile
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import NewProjectForm
 
 
 # Create your views here.
@@ -35,4 +36,30 @@ def profile(request,id):
 @login_required(login_url='/accounts/login/')
 def new_project(request):
 
-    
+    current_user = request.user
+
+    current_profile = current_user.profile
+
+    if request.method == 'POST':
+
+        form = NewProjectForm(request.POST, request.FILES)
+
+        if form.is_valid:
+
+            project = form.save(commit=False)
+
+            project.user = current_user
+
+            project.profile = current_profile
+
+            project.save()
+
+            return redirect(profile, current_user.id)
+
+    else:
+
+        form = NewProjectForm()
+
+    title = 'Create Post'
+
+    return render(request,'all-posts/new_post.html', {"form":form})
