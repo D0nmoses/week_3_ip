@@ -63,3 +63,20 @@ def new_project(request):
     title = 'Create Project'
 
     return render(request,'all-project/new_project.html', {"form":form})
+
+@login_required(login_url='/accounts/login')
+def post(request,id):
+    '''	
+    View function to display a single post, its comments and likes	
+    '''
+    current_user = request.user
+    try:
+        current_project = Project.objects.get(id=id)
+
+        title = f'{current_project.user.username}\'s post'
+
+
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'all-project/post.html', {"title":title, "project":current_project })
