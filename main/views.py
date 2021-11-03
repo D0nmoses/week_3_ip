@@ -32,7 +32,7 @@ def profile(request,id):
 
         title = f'{current_user.username}\'s'
 
-        projects = Project.objects.filter(user=current_user.id)
+        projects = Project.objects.filter(user_profile=current_user.id)
 
         return render(request, 'all-project/my_profile.html', {"title":title,"single_profile":single_profile,"current_user":current_user,"projetcs":projects})
 
