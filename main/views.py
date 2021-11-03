@@ -65,7 +65,7 @@ def new_project(request):
     return render(request,'all-project/new_project.html', {"form":form})
 
 @login_required(login_url='/accounts/login')
-def post(request,id):
+def project(request,id):
     '''	
     View function to display a single post, its comments and likes	
     '''
@@ -73,7 +73,7 @@ def post(request,id):
     try:
         current_project = Project.objects.get(id=id)
 
-        title = f'{current_project.user.username}\'s project'
+        title = f'{current_project.user_profile.username}\'s project'
 
 
     except ObjectDoesNotExist:
