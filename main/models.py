@@ -14,6 +14,14 @@ class Project(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     user_profile = models.ForeignKey(User, on_delete=models.CASCADE, default='', null=True)
 
+    
+    @classmethod
+    def search_projects(cls, name):
+        return cls.objects.filter(title__icontains=name).all()
+    
+    def __str__(self):
+        return self.title
+
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='avatars/')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
