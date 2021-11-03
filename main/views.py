@@ -112,3 +112,4 @@ def projectList(request):
 def profileList(request):
     profile = Profile.objects.all()
     serializer = ProfileSerializer(profile, many=True)
+    return Response(serializer.data)

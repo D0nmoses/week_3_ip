@@ -7,4 +7,6 @@ urlpatterns = [
     re_path(r'^create/project', views.new_project, name="new-project"),
     re_path(r'^project/(\d+)', views.project, name="project"),
     path("search_results", views.search_results, name="search_results"),
+    path('api/project-list',views.projectList,name='projectList'),
+    path('api/profile-list',views.profileList,name='profileList'),
 ]
