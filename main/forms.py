@@ -2,7 +2,7 @@ from django import forms
 from .models import Project
 
 
-class NewPostForm(forms.ModelForm):
+class NewProjectForm(forms.ModelForm):
     '''	
     Class to create a form for an authenticated user to create Post	
     '''

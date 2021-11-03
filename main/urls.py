@@ -5,4 +5,5 @@ urlpatterns = [
     path('',views.home,name='home'),
     re_path(r'^profile/(\d+)', views.profile, name="profile"),
     re_path(r'^create/project', views.new_project, name="new-project"),
+    re_path(r'^project/(\d+)', views.project, name="project"),
 ]

@@ -54,7 +54,7 @@ def new_project(request):
 
             project.save()
 
-            return redirect(profile, current_user.id)
+            return redirect(home)
 
     else:
 
