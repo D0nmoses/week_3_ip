@@ -1,0 +1,39 @@
+{% extends 'all-project/base.html' %}
+{% load bootstrap4 %]
+{% load static %}
+
+{% block styles%}
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+{% endblock %}
+{% block content %}
+{{block.super}}
+    <div class = "container-fluid">
+        <div class="row">
+        <a href = "{% url 'new-project' %}"><button class="btn btn-primary btn-lg btn-block">New Project</button></a></div>
+
+        <div class="container">
+
+            <div class="row">
+                {% for project in projects %}
+
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{project.image.url}}" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{project.title}}</h5>
+                            <p class="card-text">{{project.description}}</p>
+                            <a href="{% url 'project' project.id %}" class="btn btn-outline-success btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

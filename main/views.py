@@ -5,4 +5,4 @@ from .models import Project, Profile
 def home(request):
     projects = Project.objects.all()
 
-    return render(request, '')
+    return render(request, 'all-project/home.html',{'projects':projects})
