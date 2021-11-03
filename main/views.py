@@ -60,6 +60,6 @@ def new_project(request):
 
         form = NewProjectForm()
 
-    title = 'Create Post'
+    title = 'Create Project'
 
-    return render(request,'all-posts/new_post.html', {"form":form})
+    return render(request,'all-project/new_project.html', {"form":form})
