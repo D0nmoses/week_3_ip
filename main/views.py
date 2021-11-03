@@ -31,3 +31,8 @@ def profile(request,id):
 
     except ObjectDoesNotExist:
         raise Http404()
+
+@login_required(login_url='/accounts/login/')
+def new_project(request):
+
+    
