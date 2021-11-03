@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+
+from .serializers import ProjectSerializer, ProfileSerializer
 from .models import Project, Profile
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import NewProjectForm
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 
 # Create your views here.
@@ -95,3 +101,14 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-project/search.html',{"message":message})
+
+@api_view(['GET'])
+def projectList(request):
+    projects = Project.objects.all()
+    serializer = ProjectSerializer(projects, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def profileList(request):
+    profile = Profile.objects.all()
+    serializer = ProfileSerializer(profile, many=True)
