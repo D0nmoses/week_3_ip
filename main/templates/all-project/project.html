@@ -1,0 +1,64 @@
+{% extends 'all-project/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'css/project.css'%}">
+
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+
+    {{block.super}}
+
+    <div class="container">
+
+        <div class="row postRow">
+           <!-- Post Div -->
+
+            <div class="col-md-10 col-lg-10">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+
+                        <img src="{{project.profile.profile_pic.url}}" alt="{{project.profile.user.username}}" class="img-responsive profilePicture rounded-circle account-img">
+
+                        <h6 class="username">
+                            {{project.profile.user.username}}
+                        </h6>
+
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <img src="{{project.image.url}}" alt="{{project.title}}" class="img-responsive postImage">
+
+                        <h5 class="text-center">
+                            {{project.title}}
+                        </h5>
+                        
+                        <p>
+                            {{project.description}}
+                        </p>
+                        
+
+                        
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

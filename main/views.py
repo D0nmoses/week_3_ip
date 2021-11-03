@@ -73,10 +73,10 @@ def post(request,id):
     try:
         current_project = Project.objects.get(id=id)
 
-        title = f'{current_project.user.username}\'s post'
+        title = f'{current_project.user.username}\'s project'
 
 
     except ObjectDoesNotExist:
         raise Http404()
 
-    return render(request, 'all-project/post.html', {"title":title, "project":current_project })
+    return render(request, 'all-project/project.html', {"title":title, "project":current_project })
