@@ -80,3 +80,18 @@ def project(request,id):
         raise Http404()
 
     return render(request, 'all-project/project.html', {"title":title, "project":current_project })
+
+@login_required(login_url='/accounts/login')
+def search_results(request):
+    project = Project.objects.all()
+    
+    if 'project' in request.GET and request.GET["project"]:
+        search_term = request.GET.get("project")
+        searched_projects = Project.search_by_name(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'all-project/search.html',{"message":message,"projects": searched_projects})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-project/search.html',{"message":message})
